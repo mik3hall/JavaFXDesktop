@@ -1,0 +1,25 @@
+class AppHidden implements AppHiddenListener {
+	
+	final TextField message;
+	
+	public AppHidden(TextField message) {
+		System.out.println("AppHidden cnst");
+		this.message = message;
+	}
+	
+	public void appHidden(AppHiddenEvent evt) {
+		Platform.runLater(() -> {
+			System.out.println("AppHidden hidden evt");
+			message.setText("App hidden " + evt.getSource());
+			message.setStyle("-fx-background-color:GREEN;");
+		});		
+	}
+	
+	public void appUnhidden(AppHiddenEvent evt) {
+		Platform.runLater(() -> {
+			System.out.println("AppHidden unhidden evt");
+			message.setText("App unhidden " + evt.getSource());
+			message.setStyle("-fx-background-color:GREEN;");
+		});		
+	}
+}

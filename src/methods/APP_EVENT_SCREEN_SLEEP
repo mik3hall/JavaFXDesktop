@@ -1,0 +1,24 @@
+class ScreenSleep implements ScreenSleepListener {
+	
+	final TextField message;
+	
+	public ScreenSleep(TextField message) {
+		this.message = message;
+	}
+	
+	public void screenAboutToSleep(ScreenSleepEvent e) {
+		Platform.runLater(() -> {
+			System.out.println("ScreenSleep evt");
+			message.setText("Screen about to sleep " + e.getSource());
+			message.setStyle("-fx-text-inner-color: GREEN;");
+		});
+	}
+	
+	public void screenAwoke(ScreenSleepEvent e) {
+		Platform.runLater(() -> {
+			System.out.println("ScreenSleep evt");
+			message.setText("Screen about to sleep " + e.getSource());
+			message.setStyle("-fx-text-inner-color: GREEN;");
+		});
+	}
+}

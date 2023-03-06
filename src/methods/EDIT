@@ -1,0 +1,15 @@
+private final static Desktop desktop = Desktop.getDesktop();
+
+DesktopActions.edit((Node)exec_evt.getSource());
+
+public static void edit(Node node) {
+	if (desktop.isSupported(Desktop.Action.EDIT)) {
+		FileChooser fc = new FileChooser();
+		File edited = fc.showOpenDialog(node.getScene().getWindow());
+		try {
+			desktop.edit(edited);
+		}
+		catch (Exception ex) { ex.printStackTrace(); }
+	}
+	
+}

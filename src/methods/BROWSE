@@ -1,0 +1,12 @@
+private final static Desktop desktop = Desktop.getDesktop();
+
+public static void browse() {
+	if (desktop.isSupported(Desktop.Action.BROWSE)) {
+		String urlString = "https://openjfx.io";
+		try {
+			URI uri = new URL(urlString).toURI();
+			desktop.browse(uri);
+		}
+		catch (Exception ex) { ex.printStackTrace(); }
+	}
+}

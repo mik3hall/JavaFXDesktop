@@ -1,0 +1,18 @@
+private final static Desktop desktop = Desktop.getDesktop();
+
+AppReopenedListener arl = new AppReopened(message);
+desktop.addAppEventListener(arl);
+
+class AppReopened implements AppReopenedListener {
+	
+	final TextField message;
+	
+	public AppReopened(TextField message) {
+		this.message = message;
+	}
+	
+	public void appReopened(AppReopenedEvent evt) {
+		message.setText("App reopened " + evt.getSource());
+		message.setStyle("-fx-background-color:GREEN;");
+	}
+}
