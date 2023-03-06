@@ -1,0 +1,14 @@
+private final static Desktop desktop = Desktop.getDesktop();
+
+DesktopActions.open((Node)exec_evt.getSource());
+
+public static void open(Node node) {
+	if (desktop.isSupported(Desktop.Action.OPEN)) {
+		FileChooser fc = new FileChooser();
+		File opened = fc.showOpenDialog(node.getScene().getWindow());
+		try {
+			desktop.open(opened);
+		}
+		catch (Exception ex) { ex.printStackTrace(); }
+	}
+}

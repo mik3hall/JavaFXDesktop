@@ -1,0 +1,34 @@
+class SystemSleep implements SystemSleepListener {
+	
+	final TextField message;
+	boolean active = false;
+	
+	public SystemSleep(TextField message) {
+		this.message = message;
+	}
+	
+	public void activate() {
+		active = true;
+	}
+	
+	public void systemAboutToSleep(SystemSleepEvent e) {
+		Platform.runLater(() -> {
+			System.out.println("SystemSleep evt");
+			if (active) {
+				message.setText("System about to sleep " + e.getSource());
+				message.setStyle("-fx-text-inner-color: GREEN;");
+			}
+		});		
+	}
+	
+	public void systemAwoke(SystemSleepEvent e) {
+		Platform.runLater(() -> {
+			System.out.println("SystemSleep evt");
+			if (active) {
+				message.setText("System awoke " + e.getSource());
+				message.setStyle("-fx-text-inner-color: GREEN;");
+				active = false;
+			}
+		});		
+	}
+}

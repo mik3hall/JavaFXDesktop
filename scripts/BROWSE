@@ -1,0 +1,14 @@
+import java.awt.Desktop;
+
+Desktop desktop = Desktop.getDesktop();
+if (desktop.isSupported(Desktop.Action.BROWSE)) {
+	String urlString = "https://openjfx.io";
+	try {
+		URI uri = new URL(urlString).toURI();
+		desktop.browse(uri);
+	}
+	catch (Exception ex) { ex.printStackTrace(); }
+}
+else {
+	throw new IllegalStateException("Desktop browse is not supported.");
+}

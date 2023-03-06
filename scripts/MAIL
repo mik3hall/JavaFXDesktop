@@ -1,0 +1,10 @@
+private final static Desktop desktop = Desktop.getDesktop();
+
+public static void mail() {
+	if (desktop.isSupported(Desktop.Action.MAIL)) {
+		try {
+			desktop.mail();
+		}
+		catch (Exception ex) { ex.printStackTrace(); }
+	}
+}

@@ -1,0 +1,25 @@
+class AppForeground implements AppForegroundListener {
+	
+	final TextField message;
+	
+	public AppForeground(TextField message) {
+		System.out.println("AppForeground cnst");
+		this.message = message;
+	}
+	
+	public void appMovedToBackground(AppForegroundEvent evt) {
+		Platform.runLater(() -> {
+			System.out.println("AppForeground evt to back");
+			message.setText("App background " + evt.getSource());
+			message.setStyle("-fx-background-color:GREEN;");
+		});		
+	}
+	
+	public void appRaisedToForeground(AppForegroundEvent evt) {
+		Platform.runLater(() -> {
+			System.out.println("AppForeground evt");
+			message.setText("App foregound " + evt.getSource());
+			message.setStyle("-fx-background-color:GREEN;");
+		});
+	}
+}
